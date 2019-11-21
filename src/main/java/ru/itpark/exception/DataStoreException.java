@@ -1,7 +1,5 @@
 package ru.itpark.exception;
 
-import java.sql.SQLException;
-
 public class DataStoreException extends RuntimeException {
     public DataStoreException() {
     }

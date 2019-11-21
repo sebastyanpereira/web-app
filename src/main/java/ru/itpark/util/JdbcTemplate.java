@@ -1,12 +1,9 @@
 package ru.itpark.util;
 
-import ru.itpark.domain.Auto;
 import ru.itpark.exception.DataStoreException;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class JdbcTemplate {
