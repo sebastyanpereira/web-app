@@ -1,6 +1,7 @@
 package ru.itpark.service;
 
 import ru.itpark.domain.Auto;
+import ru.itpark.util.JdbcTemplate;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,11 +17,8 @@ public class AutoService {
     public AutoService() throws NamingException, SQLException {
         InitialContext context = new InitialContext();
         ds = (DataSource) context.lookup("java:/comp/env/jdbc/db");
-        try (Connection connection = ds.getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                statement.execute("CREATE TABLE IF NOT EXISTS autos (id TEXT PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL, image TEXT);");
-            }
-        }
+        String sql = "CREATE TABLE IF NOT EXISTS autos (id TEXT PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL, image TEXT);";
+        JdbcTemplate.execute(ds, sql);
     }
 
     public List<Auto> getAll() throws SQLException {
